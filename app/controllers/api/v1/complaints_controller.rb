@@ -1,4 +1,5 @@
 class Api::V1::ComplaintsController < ApiController
+
   before_action :set_complaint, only: [:show, :update, :destroy]
 
   # GET /complaints
