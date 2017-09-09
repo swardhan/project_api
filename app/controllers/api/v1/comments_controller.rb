@@ -3,7 +3,6 @@ class Api::V1::CommentsController < ApiController
   before_action :set_complaint, only: [:create]
 
   def create
-    byebug
     @comment = @complaint.comments.new(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
