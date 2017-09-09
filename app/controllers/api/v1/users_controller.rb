@@ -14,7 +14,7 @@ class Api::V1::UsersController < ApiController
     if @user.save
       render json: @user, status: :created#, location: api_v1_user_path(@user)
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: @user.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -25,7 +25,7 @@ class Api::V1::UsersController < ApiController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :first_name, :last_name)
+    params.require(:user).permit(:email, :password, :full_name)
   end
 
 end

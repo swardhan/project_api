@@ -17,9 +17,9 @@ class Api::V1::ComplaintsController < ApiController
 
   # POST /complaints
   def create
-    @complaint = Complaint.new(complaint_params)
-
-    if @complaint.save
+    @user = current_user
+    @complaint = @user.complaints.new(complaint_params)
+        if @complaint.save
       render json: @complaint, status: :created#, location: api_v1_complaint_path(@complaint)
     else
       render json: @complaint.errors, status: :unprocessable_entity
